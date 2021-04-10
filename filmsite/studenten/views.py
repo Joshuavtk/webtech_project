@@ -5,7 +5,7 @@ from filmsite.studenten.forms import AddForm
 
 studenten_blueprint = Blueprint('studenten',
                                 __name__,
-                                template_folder='../templates/studenten')
+                                template_folder='templates/studenten')
 
 
 @studenten_blueprint.route('/add', methods=['GET', 'POST'])

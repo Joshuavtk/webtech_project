@@ -8,6 +8,11 @@ docenten_blueprint = Blueprint('docenten',
                                template_folder='templates')
 
 
+def render(name, form):
+    url = 'docenten/'
+    return render_template(url + name + '.html', form=form)
+
+
 @docenten_blueprint.route('/add', methods=['GET', 'POST'])
 def add():
     form = AddForm()
@@ -21,13 +26,13 @@ def add():
 
         return redirect(url_for('docenten.list'))
 
-    return render_template('docenten/create.html', form=form)
+    return render('create', form)
 
 
 @docenten_blueprint.route('/list')
 def list():
     docenten = Docent.query.all()
-    return render_template('list.html', docenten=docenten)
+    return render_template('docenten/list.html', docenten=docenten)
 
 
 @docenten_blueprint.route('/delete', methods=['GET', 'POST'])
@@ -42,4 +47,4 @@ def delete():
         db.session.commit()
 
         return redirect(url_for('docenten.list'))
-    return render_template('delete.html', form=form)
+    return render('delete', form)
