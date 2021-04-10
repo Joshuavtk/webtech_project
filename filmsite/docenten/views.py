@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for
-from mijnproject import db
-from mijnproject.docenten.forms import AddForm, DelForm
-from mijnproject.models import Docent
+from filmsite import db
+from filmsite.docenten.forms import AddForm, DelForm
+from filmsite.models import Docent
 
 docenten_blueprint = Blueprint('docenten',
                                __name__,

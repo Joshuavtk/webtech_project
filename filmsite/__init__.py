@@ -14,8 +14,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 Migrate(app,db)
 
-from mijnproject.docenten.views import docenten_blueprint
-from mijnproject.studenten.views import studenten_blueprint
+from filmsite.docenten.views import docenten_blueprint
+from filmsite.studenten.views import studenten_blueprint
 
 app.register_blueprint(studenten_blueprint,url_prefix="/studenten")
 app.register_blueprint(docenten_blueprint,url_prefix='/docenten')

@@ -1,4 +1,4 @@
-from mijnproject import db
+from filmsite import db
 
 class Docent(db.Model):
 
