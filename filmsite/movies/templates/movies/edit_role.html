@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_name %}Voeg rol toe{% endblock %}
+
+{% block page %}
+<div>
+    <h1>Voeg rol toe aan de film {{ movie.title }}</h1>
+    {% if error %}
+        <p class=error><strong>Error:</strong> {{ error }}</p>
+    {% endif %}
+    {{ wtf.quick_form(form, button_map={'submit': 'primary btn-large'}) }}
+
+    <br>
+    <a class="btn btn-danger" href="{{url_for('movies.delete_role', movie_id = movie.id, role_id = role.id)}}">Verwijder rol</a>
+
+</div>
+{% endblock %}

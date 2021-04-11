@@ -3,5 +3,12 @@
 {% block page_name %}Home{% endblock %}
 
 {% block page %}
-    <h1 class="p-3">Welcome!</h1>
+    <h1 class="p-3">Welkom!</h1>
+    <p>
+        Om te beginnen kan je een genre uitkiezen:
+    </p>
+    <p>
+        Of bekijk een lijst van alle films:
+        <a class="btn btn-primary" href="{{ url_for('movies.list') }}">Bekijk alle films</a>
+    </p>
 {% endblock %}

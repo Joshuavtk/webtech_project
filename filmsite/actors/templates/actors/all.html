@@ -4,9 +4,11 @@
 
 {% block page %}
 
+{% if current_user.is_authenticated %}
 <a class="btn btn-primary" href="{{ url_for('actors.add') }}">
     Maak nieuwe acteur aan
 </a>
+{% endif %}
 
 {% for actor in actors %}
 <a href="{{ url_for('actors.show', actor_id = actor.id) }}">

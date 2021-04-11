@@ -15,6 +15,7 @@ def list():
 
 
 @actors_blueprint.route('/add', methods=['GET', 'POST'])
+@login_required
 def add():
 
     form = AddForm()
@@ -63,6 +64,7 @@ def edit(actor_id):
 
 
 @actors_blueprint.route('/<actor_id>/delete', methods=['GET', 'POST'])
+@login_required
 def delete(actor_id):
 
     actor = Actor.query.filter_by(id=actor_id).first()

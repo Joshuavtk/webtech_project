@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-{% block page_name %} Maak nieuwe directeur aan {% endblock %}
+{% block page_name %} Maak nieuwe regisseur aan {% endblock %}
 {% block page %}
 
-    <h1>Voeg directeur toe</h1>
+    <h1>Voeg regisseur toe</h1>
     {{ wtf.quick_form(form, button_map={'submit': 'primary'}) }}
 
 {% endblock %}

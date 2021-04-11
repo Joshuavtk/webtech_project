@@ -4,9 +4,11 @@
 
 {% block page %}
 
+{% if current_user.is_authenticated %}
 <a class="btn btn-primary" href="{{ url_for('directors.add') }}">
-    Maak nieuwe directeur aan
+    Maak nieuwe regisseur aan
 </a>
+{% endif %}
 
 {% for director in directors %}
 <a href="{{ url_for('directors.show', director_id = director.id) }}">

@@ -1,16 +1,30 @@
 {% extends "base.html" %}
 
-{% block page_name %} Acteur {{director.first_name}} {{ director.last_name}}{% endblock %}
+{% block page_name %} Regisseur {{director.first_name}} {{ director.last_name}}{% endblock %}
 
 {% block page %}
 
+{% if current_user.is_authenticated %}
 <a class="btn btn-primary" href="{{ url_for('directors.edit', director_id = director.id) }}">
-    Bewerk directeur
+    Bewerk regisseur
 </a>
 
 <a class="btn btn-danger" href="{{url_for('directors.delete', director_id = director.id)}}">Verwijder directeur</a>
-
+{% endif %}
 <h3>
     {{ director.first_name }} {{ director.last_name}}
 </h3>
+
+<h4>
+    Films:
+</h4>
+<ul>
+    {% for movie in director.movies %}
+    <li>
+        Regisseur van <a href="{{ url_for('movies.show', movie_id = movie.id) }}">{{movie.title}}</a>
+            
+    </li>
+    {% endfor %}
+</ul>
+
 {% endblock %}

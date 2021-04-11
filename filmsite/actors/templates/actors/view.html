@@ -4,13 +4,29 @@
 
 {% block page %}
 
+{% if current_user.is_authenticated %}
 <a class="btn btn-primary" href="{{ url_for('actors.edit', actor_id = actor.id) }}">
     Bewerk acteur
 </a>
 
 <a class="btn btn-danger" href="{{url_for('actors.delete', actor_id = actor.id)}}">Verwijder acteur</a>
-
+{% endif %}
 <h3>
     {{ actor.first_name }} {{ actor.last_name}}
 </h3>
+
+<h4>
+    Rollen:
+</h4>
+<ul>
+    {% for role in actor.roles %}
+    {% if role.movie_id %}
+    <li>
+        {{role.playing_as}} in <a href="{{ url_for('movies.show', movie_id = role.movies.id) }}">{{role.movies.title}}</a>
+            
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
+
 {% endblock %}

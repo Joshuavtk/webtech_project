@@ -4,9 +4,11 @@
 
 {% block page %}
 
+{% if current_user.is_authenticated %}
 <a class="btn btn-primary" href="{{ url_for('movies.add') }}">
     Maak nieuwe film aan
 </a>
+{% endif %}
 
 {% for movie in movies %}
 <a href="{{ url_for('movies.show', movie_id = movie.id) }}">

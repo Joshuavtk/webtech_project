@@ -16,6 +16,7 @@ def list():
 
 
 @directors_blueprint.route('/add', methods=['GET', 'POST'])
+@login_required
 def add():
 
     form = AddForm()
@@ -28,7 +29,7 @@ def add():
         db.session.add(new_director)
         db.session.commit()
 
-        flash("Nieuwe directeur succesvol toegevoegd.")
+        flash("Nieuwe regisseur succesvol toegevoegd.")
 
         return redirect(url_for('directors.list'))
     return render_template(url + 'create.html', form=form)
@@ -57,13 +58,14 @@ def edit(director_id):
         db.session.add(director)
         db.session.commit()
 
-        flash("Directeur succesvol bijgewerkt.")
+        flash("Regisseur succesvol bijgewerkt.")
         return redirect(url_for('directors.show', director_id = director.id))
 
     return render_template(url + "edit.html", form=form, director=director)
 
 
 @directors_blueprint.route('/<director_id>/delete', methods=['GET', 'POST'])
+@login_required
 def delete(director_id):
 
     director = Director.query.filter_by(id=director_id).first()
@@ -73,7 +75,7 @@ def delete(director_id):
         db.session.delete(director)
         db.session.commit()
 
-        flash("Directeur succesvol verwijderd.")
+        flash("Regisseur succesvol verwijderd.")
 
         return redirect(url_for('directors.list'))
     return render_template(url + "delete.html", form=form, director=director)
