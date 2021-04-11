@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block page_name %} Acteur {{actor.first_name}} {{ actor.last_name}}{% endblock %}
+
+{% block page %}
+
+<a class="btn btn-primary" href="{{ url_for('actors.edit', actor_id = actor.id) }}">
+    Bewerk acteur
+</a>
+
+<a class="btn btn-danger" href="{{url_for('actors.delete', actor_id = actor.id)}}">Verwijder acteur</a>
+
+<h3>
+    {{ actor.first_name }} {{ actor.last_name}}
+</h3>
+{% endblock %}

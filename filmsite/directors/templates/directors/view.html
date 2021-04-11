@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block page_name %} Acteur {{director.first_name}} {{ director.last_name}}{% endblock %}
+
+{% block page %}
+
+<a class="btn btn-primary" href="{{ url_for('directors.edit', director_id = director.id) }}">
+    Bewerk directeur
+</a>
+
+<a class="btn btn-danger" href="{{url_for('directors.delete', director_id = director.id)}}">Verwijder directeur</a>
+
+<h3>
+    {{ director.first_name }} {{ director.last_name}}
+</h3>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block page_name %}Alle films{% endblock %}
+
+{% block page %}
+
+<a class="btn btn-primary" href="{{ url_for('movies.add') }}">
+    Maak nieuwe film aan
+</a>
+
+{% for movie in movies %}
+<a href="{{ url_for('movies.show', movie_id = movie.id) }}">
+    <h3>
+        {{ movie.title }}
+    </h3>
+    <p class="text-info">
+        Jaar van uitkomst: {{movie.release_year}}
+    </p>
+</a>
+
+{% endfor %}
+
+{% endblock %}

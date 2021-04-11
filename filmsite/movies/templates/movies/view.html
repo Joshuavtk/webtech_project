@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block page_name %}{{movie.title}}{% endblock %}
+
+{% block page %}
+<a class="btn btn-primary" href="{{ url_for('movies.edit', movie_id = movie.id) }}">
+    Bewerk film
+</a>
+<a class="btn btn-danger" href="{{url_for('movies.delete', movie_id = movie.id)}}">Verwijder film</a>
+
+
+<h3>
+    {{ movie.title }}
+</h3>
+<p class="text-info">
+    Jaar van uitkomst: {{movie.release_year}}
+</p>
+</h3>
+<p class="text-info">
+    Directeur: {{movie.directors}}
+</p>
+{% endblock %}

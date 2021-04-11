@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_name %}Sign In{% endblock %}
+
+{% block page %}
+<div class="login">
+    <h1>Sign In</h1>
+    {% if error %}
+        <p class=error><strong>Error:</strong> {{ error }}</p>
+    {% endif %}
+    {{ wtf.quick_form(form, button_map={'submit_login': 'primary btn-large'}) }}
+</div>
+{% endblock %}

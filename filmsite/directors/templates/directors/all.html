@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block page_name %}Alle directeurs{% endblock %}
+
+{% block page %}
+
+<a class="btn btn-primary" href="{{ url_for('directors.add') }}">
+    Maak nieuwe directeur aan
+</a>
+
+{% for director in directors %}
+<a href="{{ url_for('directors.show', director_id = director.id) }}">
+    <h3>
+        {{ director.first_name }} {{ director.last_name}}
+    </h3>
+</a>
+
+{% endfor %}
+
+{% endblock %}

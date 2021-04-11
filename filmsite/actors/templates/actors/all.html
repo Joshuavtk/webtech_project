@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block page_name %}Alle acteurs{% endblock %}
+
+{% block page %}
+
+<a class="btn btn-primary" href="{{ url_for('actors.add') }}">
+    Maak nieuwe acteur aan
+</a>
+
+{% for actor in actors %}
+<a href="{{ url_for('actors.show', actor_id = actor.id) }}">
+    <h3>
+        {{ actor.first_name }} {{ actor.last_name}}
+    </h3>
+</a>
+
+{% endfor %}
+
+{% endblock %}

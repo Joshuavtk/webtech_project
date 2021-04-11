@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_name %}Verwijder film{% endblock %}
+
+{% block page %}
+<h3>Weet je zeker dat je deze film wilt verwijderen?</h3>
+
+{{ wtf.quick_form(form, button_map={'submit': 'danger'}) }}
+{% endblock %}

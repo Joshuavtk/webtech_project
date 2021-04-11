@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_name %}Maak film aan{% endblock %}
+
+{% block page %}
+<div>
+    <h1>Maak film aan</h1>
+    {% if error %}
+        <p class=error><strong>Error:</strong> {{ error }}</p>
+    {% endif %}
+    {{ wtf.quick_form(form, button_map={'submit': 'primary btn-large'}) }}
+
+</div>
+{% endblock %}

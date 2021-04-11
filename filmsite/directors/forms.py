@@ -1,11 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField
 
-
 class AddForm(FlaskForm):
-    naam = StringField('Naam docent:')
-    submit = SubmitField('Voeg toe')
+    first_name = StringField('Voornaam directeur:')
+    last_name = StringField('Achternaam directeur:')
+    submit = SubmitField('Opslaan')
 
 class DelForm(FlaskForm):
-    id = IntegerField('Vul het ID in van de docent die verwijderd gaat worden:')
     submit = SubmitField('Verwijder')
