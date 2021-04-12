@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block page_name %}Alle directeurs{% endblock %}
+
+{% block page %}
+
+{% if current_user.is_authenticated %}
+<a class="btn btn-primary" href="{{ url_for('genres.add') }}">
+    Maak nieuwe genre aan
+</a>
+{% endif %}
+
+{% for genre in genres %}
+<a href="{{ url_for('genres.show', genre_id = genre.id) }}">
+    <h3>
+        {{ genre.name }}
+    </h3>
+</a>
+
+{% endfor %}
+
+{% endblock %}

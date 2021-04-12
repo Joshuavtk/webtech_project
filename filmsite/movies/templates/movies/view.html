@@ -42,9 +42,23 @@
     <p class="text-info">
         Speelduur: {{movie.playtime}} minuten
     </p>
-    
+
     <p class="text-info">
-        Genre: {{movie.genre}}
+        <h4>
+            Genres:
+        </h4>
+        <ul>
+
+            {% for genre in movie.genres %}
+                {% if genre.genres.name %}
+                    <li>    
+                        <a href="{{url_for('genres.show', genre_id = genre.genres.id)}}">
+                            {{genre.genres.name}}
+                        </a> 
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
     </p>
 
     {% if movie.roles %}

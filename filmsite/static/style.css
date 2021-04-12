@@ -1,0 +1,7 @@
+.form-group > #genres {
+    height: auto !important;
+}
+
+#genres ::marker {
+    content: '';
+}

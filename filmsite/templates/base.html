@@ -2,8 +2,8 @@
 
 {% block head %}
 {{super()}}
-{#<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">#}
-
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{url_for('static', filename='script.js')}}"></script>
 {% endblock %}
 
 {% block title %}{% block page_name %}{% endblock %} - Filmfan{% endblock %}
@@ -54,7 +54,8 @@
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('movies.list') }}">Films</a></li>
                 <li><a href="{{ url_for('actors.list') }}">Acteurs</a></li>
-                <li><a href="{{ url_for('directors.list') }}">Regisseur</a></li>
+                <li><a href="{{ url_for('directors.list') }}">Regisseurs</a></li>
+                <li><a href="{{ url_for('genres.list') }}">Genres</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}

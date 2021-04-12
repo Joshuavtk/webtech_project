@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block page_name %} Maak nieuwe genre aan {% endblock %}
+{% block page %}
+
+    <h1>Maak genre aan</h1>
+    {{ wtf.quick_form(form, button_map={'submit': 'primary'}) }}
+
+{% endblock %}

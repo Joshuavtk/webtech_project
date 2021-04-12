@@ -7,8 +7,12 @@
     <p>
         Om te beginnen kan je een genre uitkiezen:
     </p>
+    {% for genre in genres %}
+        <a class="btn btn-primary" href="{{ url_for('genres.show', genre_id = genre.id) }}">{{genre.name}}</a>
+    {% endfor %}
     <p>
-        Of bekijk een lijst van alle films:
+        <br>
+        Of bekijk een lijst van alle films:</p>
         <a class="btn btn-primary" href="{{ url_for('movies.list') }}">Bekijk alle films</a>
-    </p>
+
 {% endblock %}

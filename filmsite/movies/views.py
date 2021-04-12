@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for
 from filmsite import db, flash, login_required
 from filmsite.movies.forms import CreateForm, DelForm
 from filmsite.roles.forms import RoleForm, DelRoleForm
-from filmsite.models import Movie, Director, Actor, Role
+from filmsite.models import Movie, Director, Actor, Role, Genre, MovieGenres
 
 movies_blueprint = Blueprint('movies',
                                __name__,
@@ -23,6 +23,10 @@ def add():
     directors_list=[(i.id, i.first_name + ' ' + i.last_name) for i in directors]
     form.director_id.choices = directors_list
 
+    genres = Genre.query.all()
+    genres_list=[(i.id, i.name) for i in genres]
+    form.genres.choices = genres_list
+
     if form.validate_on_submit():
     
         new_movie = Movie(
@@ -31,13 +35,18 @@ def add():
             visitor_amount = form.visitor_amount.data,
             gross_income = form.gross_income.data,
             playtime = form.playtime.data,
-            genre = form.genre.data,
             trailer_url = form.trailer_url.data,
             director_id = form.director_id.data
             )
 
         db.session.add(new_movie)
         db.session.commit()
+
+        for genre in form.genres.data:
+            new_genre = MovieGenres(
+                movie_id=movie.id, 
+                genre_id=genre)
+            db.session.add(new_genre)
 
         flash("Nieuwe film succesvol toegevoegd.")
         return redirect(url_for('movies.show', movie_id = new_movie.id))
@@ -160,6 +169,10 @@ def edit(movie_id):
     directors_list=[(i.id, i.first_name + ' ' + i.last_name) for i in directors]
     form.director_id.choices = directors_list
 
+    genres = Genre.query.all()
+    genres_list=[(i.id, i.name) for i in genres]
+    form.genres.choices = genres_list
+
     if form.validate_on_submit():
 
         movie.title = form.title.data
@@ -168,8 +181,21 @@ def edit(movie_id):
         movie.visitor_amount = form.visitor_amount.data
         movie.gross_income = form.gross_income.data
         movie.playtime = form.playtime.data
-        movie.genre = form.genre.data
         movie.trailer_url = form.trailer_url.data
+
+        for genre in movie.genres:
+            if genre not in form.genres.data:
+                movie_genre = MovieGenres.query.filter_by(id=genre.id).first()
+                db.session.delete(movie_genre)
+        db.session.commit()
+
+        for genre in form.genres.data:
+            new_genre = MovieGenres(
+                movie_id=movie.id, 
+                genre_id=genre)
+            db.session.add(new_genre)
+        db.session.commit()
+
 
         db.session.add(movie)
         db.session.commit()
@@ -177,4 +203,4 @@ def edit(movie_id):
         flash("Film succesvol bijgewerkt.")
         return redirect(url_for('movies.show', movie_id = movie.id))
 
-    return render_template("movies/edit.html", form=form, movie=movie)
+    return render_template("movies/edit.html", form=form, movie=movie, genres=movie.genres)

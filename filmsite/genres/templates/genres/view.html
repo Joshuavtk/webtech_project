@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block page_name %} Genre {{ genre.name }}{% endblock %}
+
+{% block page %}
+
+{% if current_user.is_authenticated %}
+<a class="btn btn-primary" href="{{ url_for('genres.edit', genre_id = genre.id) }}">
+    Bewerk genre
+</a>
+
+<a class="btn btn-danger" href="{{url_for('genres.delete', genre_id = genre.id)}}">Verwijder genre</a>
+{% endif %}
+<h3>
+    {{ genre.name }}
+</h3>
+
+<h4>
+    Films in genre:
+</h4>
+<ul>
+    {% for movie in movies %}
+    {% if movie.id in movies_in_genre %}
+    <li>
+        Regisseur van <a href="{{ url_for('movies.show', movie_id = movie.id) }}">{{movie.title}}</a>
+            
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
+
+{% endblock %}

@@ -23,6 +23,7 @@ class Movie(UserMixin, db.Model):
     director_id = db.Column(db.Integer,db.ForeignKey('directors.id'))
     release_year = db.Column(db.Integer)
     roles = db.relationship('Role',backref='movies')
+    genres = db.relationship('MovieGenres',backref='movies')
     visitor_amount = db.Column(db.Integer)
     gross_income = db.Column(db.Integer)
     playtime = db.Column(db.Integer)
@@ -56,3 +57,17 @@ class Role(UserMixin, db.Model):
     movie_id = db.Column(db.Integer,db.ForeignKey('movies.id'))
     actor_id = db.Column(db.Integer,db.ForeignKey('actors.id'))
     playing_as = db.Column(db.String(64))
+
+
+class Genre(db.Model):
+    __tablename__ = "genres"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32))
+    movies = db.relationship('MovieGenres',backref='genres')
+
+class MovieGenres(db.Model):
+    __tablename__ = "movie_genre"
+    id = db.Column(db.Integer, primary_key=True)
+    movie_id = db.Column(db.Integer,db.ForeignKey('movies.id'))
+    genre_id = db.Column(db.Integer,db.ForeignKey('genres.id'))
+

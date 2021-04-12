@@ -25,8 +25,10 @@ from filmsite.movies.views import movies_blueprint
 from filmsite.actors.views import actors_blueprint
 from filmsite.users.views import users_blueprint
 from filmsite.directors.views import directors_blueprint
+from filmsite.genres.views import genres_blueprint
 
 app.register_blueprint(movies_blueprint,url_prefix='/movies')
 app.register_blueprint(actors_blueprint,url_prefix="/actors")
 app.register_blueprint(users_blueprint,url_prefix="/users")
 app.register_blueprint(directors_blueprint,url_prefix="/directors")
+app.register_blueprint(genres_blueprint,url_prefix="/genres")
