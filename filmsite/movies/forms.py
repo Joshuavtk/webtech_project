@@ -8,14 +8,8 @@ class DelForm(FlaskForm):
     submit = SubmitField('Verwijder')
 
 class MultiCheckboxField(SelectMultipleField):
-    # def __init__(genres):
-    #     self.genres = genres
-
     widget = widgets.ListWidget(prefix_label=False)
     option_widget = widgets.CheckboxInput()
-    # option_widget = widgets.Select(multiple=True)
-    # def iter_choices(genres):
-    #     return [(1,2,3)]
 
 class CreateForm(FlaskForm):
     title = wtforms.StringField(
@@ -54,7 +48,6 @@ class CreateForm(FlaskForm):
     )
 
     genres = MultiCheckboxField('Kies genres', coerce=int)
-    # genres = SelectMultipleField(coerce=int, widget=MultiCheckboxField)
 
     submit = wtforms.SubmitField("Opslaan")
     

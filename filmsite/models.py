@@ -15,7 +15,6 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.user_password, password)
 
 
-
 class Movie(UserMixin, db.Model):
     __tablename__ = "movies"
     id = db.Column(db.Integer, primary_key=True)
@@ -29,9 +28,7 @@ class Movie(UserMixin, db.Model):
     playtime = db.Column(db.Integer)
     genre = db.Column(db.String(32))
     trailer_url = db.Column(db.String(64))
-    """Nog toe te voegen
-    Producent
-    """
+
 
 class Actor(UserMixin, db.Model):
     def __repr__(self):
@@ -42,6 +39,7 @@ class Actor(UserMixin, db.Model):
     last_name = db.Column(db.String(64))
     roles = db.relationship('Role',backref='actors')
 
+
 class Director(UserMixin, db.Model):
     def __repr__(self):
         return self.first_name + ' ' + self.last_name
@@ -50,6 +48,7 @@ class Director(UserMixin, db.Model):
     first_name = db.Column(db.String(32))
     last_name = db.Column(db.String(64))
     movies = db.relationship('Movie',backref='directors')
+
 
 class Role(UserMixin, db.Model):
     __tablename__ = "roles"
@@ -64,6 +63,7 @@ class Genre(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32))
     movies = db.relationship('MovieGenres',backref='genres')
+
 
 class MovieGenres(db.Model):
     __tablename__ = "movie_genre"
